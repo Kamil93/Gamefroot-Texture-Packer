@@ -191,7 +191,7 @@ function generate(files, options, callback) {
     var name = "";
     if (options.nameCallback) {
       name = options.nameCallback(item);
-      name = item.substring(0, item.lastIndexOf("."));
+      name = name.substring(0, name.lastIndexOf("."));
     }
     else {
       if (options.fullpath) {
