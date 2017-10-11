@@ -189,11 +189,17 @@ function generate(files, options, callback) {
   files = files.map(function (item, index) {
     var resolvedItem = path.resolve(item);
     var name = "";
-    if (options.fullpath) {
+    if (options.nameCallback) {
+      name = options.nameCallback(item);
       name = item.substring(0, item.lastIndexOf("."));
     }
     else {
-      name = options.prefix + resolvedItem.substring(resolvedItem.lastIndexOf(path.sep) + 1, resolvedItem.lastIndexOf('.'));
+      if (options.fullpath) {
+        name = item.substring(0, item.lastIndexOf("."));
+      }
+      else {
+        name = options.prefix + resolvedItem.substring(resolvedItem.lastIndexOf(path.sep) + 1, resolvedItem.lastIndexOf('.'));
+      }
     }
     fileHash[resolvedItem] = {
       index: index,
